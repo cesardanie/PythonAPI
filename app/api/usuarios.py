@@ -4,7 +4,7 @@ from typing import List
 from app.core.database import get_db
 from app import crud
 from app.schemas import usuario as schemas
-
+from app.crud.usuario import get_usuario, get_usuarios, create_usuario, update_usuario, delete_usuario
 router = APIRouter()
 
 @router.get("/", response_model=List[schemas.Usuario])

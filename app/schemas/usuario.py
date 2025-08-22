@@ -16,5 +16,4 @@ class Usuario(UsuarioBase):
     Id: int
 
     class Config:
-        orm_mode = True
-        from_attributes = True  # Para SQLAlchemy 2.0
+        from_attributes = True  # Cambiado de orm_mode
