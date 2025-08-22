@@ -1,11 +1,15 @@
 from fastapi import FastAPI
-from app.api import user  # importamos las rutas
+from app.core.database import engine, Base
+from app.api import usuarios  # Importar el router de usuarios
 
-app = FastAPI(title="Mi API en FastAPI")
+# Crear las tablas en la base de datos (solo para desarrollo)
+Base.metadata.create_all(bind=engine)
 
-# incluir las rutas
-app.include_router(user.router, prefix="/users", tags=["Users"])
+app = FastAPI()
+
+# Incluir los routers
+app.include_router(usuarios.router, prefix="/api/usuarios", tags=["usuarios"])
 
 @app.get("/")
-def root():
-    return {"message": "Bienvenido a la API con FastAPI 🚀"}
+def read_root():
+    return {"message": "API de Usuarios funcionando"}
